@@ -13,3 +13,8 @@ for element in list_of_list:
 # *리스트 -> 리스트[0], 리스트[1],... 
 print(list_of_list[0])      # [1, 2, 3]
 print(*list_of_list[0])     # 1 2 3
+
+list_a = [1,4,6,8,9]
+for index in range(len(list_a)):
+    print(index, " = ", list_a[index])
+
