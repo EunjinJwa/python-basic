@@ -86,3 +86,21 @@ print("# in / not in 연산자 ")
 print("102 in list_all ? ", 102 in list_all)
 print("109 in list_all ? ", 109 in list_all)
 print("109 not in list_all ? ", 109 not in list_all)
+
+
+# 리스트 내포
+list_i = [i for i in range(0,5)]    
+print(list_i)
+
+list_i = [i*2 for i in range(0,5)]    
+print(list_i)
+
+list_i = [i*i for i in range(0,5)]    
+print(list_i)
+
+list_i = [i*i for i in range(0,10, 2)]    
+print(list_i)
+
+list_fruit = ["사과", "자두", "복숭아", "딸기", "초콜릿"]
+output = [item for item in list_fruit if item != "초콜릿"]
+print(output)

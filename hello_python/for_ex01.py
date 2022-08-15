@@ -18,3 +18,7 @@ list_a = [1,4,6,8,9]
 for index in range(len(list_a)):
     print(index, " = ", list_a[index])
 
+# 인덱스를 확인하는 방법 : enumerate()
+list_b = ["A", "B", "C", "D"]
+for i, value in enumerate(list_b):
+    print(f"{i}번째 요소 : {value}")

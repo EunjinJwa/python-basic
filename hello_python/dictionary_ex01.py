@@ -18,3 +18,7 @@ print(dictionary)
 
 for key in dictionary:
     print(key, " : ", dictionary[key])
+
+# items() 함수 사용
+for key, value in dictionary.items():
+    print(key, " : ", value)
