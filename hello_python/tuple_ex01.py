@@ -38,7 +38,7 @@ print(result2)
 
 # tuple을 리턴값으로 사용하는 대표 함수 divmod() : result => (몫, 나머지)
 a, b = 50, 7
-print(divmod(a, b))
+print(divmod(a, b))  # (7, 1)
 
 
 

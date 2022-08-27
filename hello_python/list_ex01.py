@@ -16,7 +16,6 @@ print(list_b[0][2])     # 3
 list_c = [1,2,3]
 list_d = [4,5,6]
 print("list_c + list_d : ", list_c + list_d)  # [1, 2, 3, 4, 5, 6]
-print("list_c.append(list_d) : ", list_c.append(list_d))  # [1, 2, 3, [4, 5, 6]]
 print(list_c * 3)       # [1, 2, 3, 1, 2, 3, 1, 2, 3]
 print("리스트 길이 : ", len(list_d) )
 
