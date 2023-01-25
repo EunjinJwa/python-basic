@@ -1,6 +1,6 @@
 
-from requests import get
-from bs4 import BeautifulSoup
+from requests import get            # pip3 install requests
+from bs4 import BeautifulSoup       # pip3 install beautifulsoup4
 
 
 def convert_job_data(job_post):
@@ -35,5 +35,4 @@ else:
         for job_post in job_posts:
             job_boards.append(convert_job_data(job_post))
 print(job_boards)
-print("good!")
 
