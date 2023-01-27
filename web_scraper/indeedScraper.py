@@ -18,8 +18,26 @@ response = browser.page_source
 
 soup = BeautifulSoup(response, "html.parser")
 jobs = soup.find("ul", class_="jobsearch-ResultsList").find_all("li", recursive=False)
+
+results = []
 for job in jobs:
-    print(job)
-    print("=====================")
+    zone = job.find("div", class_="mosaic-zone")
+    if zone == None:
+        info = job.select_one("h2 a")
+        link = info['href']
+        company = job.find("span", class_="companyName")
+        location = job.find("div", class_="companyLocation")
+        position = info['aria-label']
+        
+        job_data = {
+            'link': f"https://kr.indeed.com{link}",
+            'company': company.string,
+            'location': location.string,
+            'position': position
+        }
+        results.append(job_data)
+
+for result in results:
+    print(result)
 
 
