@@ -8,10 +8,10 @@ def convert_job_data(job_post):
     anchor = anchors[1]
     link = anchor["href"]   # BeautifulSoup이 dictionary로 만들어주므로 anchor["href"] 이렇게 사용 가능
     job_data = {
-        'link': link,
+        'link': f"https://weworkremotely.com{link}",
         'company': company.string,
         'type': type.string,
-        'region': region.string,
+        'location': region.string,
         'position': title.string
     }
     return job_data
