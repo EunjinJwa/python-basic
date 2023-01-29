@@ -9,7 +9,10 @@
 </head>
 <body>
     <main class="container">
-        <h1>Search Results for "{{keyword}}":</h1>
+        <hgroup>
+            <h1>Search Results for "{{keyword}}":</h1>
+            <a target="_blank" href="/export?keyword={{keyword}}">Save to csv file.</a>
+        </hgroup>
         <table role="grid">
             <thead>
                 <th>title</th>
