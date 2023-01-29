@@ -7,7 +7,7 @@ options = Options()
 options.add_argument("--no-sandbox")
 options.add_argument("--disable-dev-shm-usage")
 
-browser = webdriver.Chrome(options=options)
+browser = None
 
 
 def get_job_list(soup):
@@ -33,6 +33,7 @@ def get_job_list(soup):
     return results
 
 def extract_indeed_job(keywork):
+    browser = webdriver.Chrome(options=options)
 
     base_url = "https://kr.indeed.com/jobs?q="
 
