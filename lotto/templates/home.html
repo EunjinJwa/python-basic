@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Numbers</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+</head>
+<body>
+    <main class="container">
+        <h1>I hope you to get Lucky Numbers!</h1>
+        <form action="/generate">
+            <input type="text" name="drwNo" placeholder="latest No"/>
+            <button>Generate</button>
+            <div>
+                {% for line in results%}
+                    <li>{{line}}</li>
+                {% endfor %}
+            </div>
+        </form>
+    </main>
+</body>
+</html>
