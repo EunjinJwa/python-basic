@@ -1,63 +1,56 @@
-import json
-import requests
+from lotto_request import request_lotto
 import random
-from database.memory_db import add_lotto_results, has_data, get_lotto_results, add_unique_num_list, add_num_count, get_unique_num_list
 
+class LottoNumber:
+    lotto_results = None
+    unique_num_list = []
+    num_count = {}
 
-def set_unique_num(result):
-    add_unique_num_list(result['drwtNo1'])
-    add_unique_num_list(result['drwtNo2'])
-    add_unique_num_list(result['drwtNo3'])
-    add_unique_num_list(result['drwtNo4'])
-    add_unique_num_list(result['drwtNo5'])
-    add_unique_num_list(result['drwtNo6'])
+    def __init__(self, lotto_results):
+        self.lotto_results = lotto_results
+        self.unique_num_list = []
+        self.num_count = {}
+        self.gen_number_summary()
 
+    def add_unique_num_list(self, number):
+        if number not in self.unique_num_list:
+            self.unique_num_list.append(number)
 
-def get_lotto_request(drw_no):
+    def gen_number_summary(self):
+        for result in self.lotto_results:
+            self.add_unique_num_list(result['drwtNo1'])
+            self.add_unique_num_list(result['drwtNo2'])
+            self.add_unique_num_list(result['drwtNo3'])
+            self.add_unique_num_list(result['drwtNo4'])
+            self.add_unique_num_list(result['drwtNo5'])
+            self.add_unique_num_list(result['drwtNo6'])
+
+    def pick_numbers(self):
+        target_list = self.unique_num_list.copy()
+        print(self.unique_num_list)
+        results = []
+        for i in range(6):
+            index = random.randrange(0, len(target_list))
+            picked = target_list.pop(index)
+            results.append(picked)
+        return results
+   
+        
+
+def get_lotto_numbers(drw_no):
+    lotto_results = []
     for i in range(15):
         drw_no = drw_no - 1
-        response = requests.get(f"https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo={drw_no}")
-        add_lotto_results(json.loads(response.text))
+        response = request_lotto(drw_no)
+        lotto_results.append(response)
     
-    results = get_lotto_results()
-    for result in results:
-        set_unique_num(result)
-        set_num_count(result)
-    
+    return LottoNumber(lotto_results)
 
-num_count = {}
-
-results = []
-
-
-
-
-
-def set_num_count(num):
-    add_num_count(num['drwtNo1'])
-    add_num_count(num['drwtNo2'])
-    add_num_count(num['drwtNo3'])
-    add_num_count(num['drwtNo4'])
-    add_num_count(num['drwtNo5'])
-    add_num_count(num['drwtNo6'])
-
-
-
-
-def pick_numbers():
-    unique_num_list = get_unique_num_list()
-    print(">>", unique_num_list)
+def gen_lucky_numbers(drw_no, count):
     results = []
-    for i in range(6):
-        index = random.randrange(0, len(unique_num_list))
-        picked = unique_num_list[index]
-        results.append(picked)
+    lotto_number_obj = get_lotto_numbers(drw_no)
+    
+    for i in range(count):
+        results.append(lotto_number_obj.pick_numbers())
+    
     return results
-
-
-def gen_lottos(drw_no):
-    if has_data() == False:
-        get_lotto_request(drw_no)
-
-    sorted_nums = sorted(num_count.items(), key=lambda item: item[1], reverse=True)
-    return pick_numbers()
